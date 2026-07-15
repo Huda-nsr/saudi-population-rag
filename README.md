@@ -5,8 +5,14 @@ census data (from the [National Open Data Platform](https://open.data.gov.sa) /
 [Saudi Census 2022](https://portal.saudicensus.sa)), and get answers grounded in the
 real data — with a citation to the source dataset every time.
 
-> **Demo:** _add a GIF here once it's running (this is the single highest-impact thing in the README)._
-> **Live app:** _add your Hugging Face Spaces link here._
+![Saudi Population & Census — bilingual RAG Q&A](docs/demo.gif)
+
+> The banner above is a placeholder. Replace **`docs/demo.gif`** with a ~15s screen
+> recording of the running app answering an English and an Arabic question (each with
+> its cited source) — capture it with [ScreenToGif](https://www.screentogif.com/),
+> keep the same filename, and it appears here automatically.
+>
+> **Live app:** _add your Hugging Face Spaces link here once deployed._
 
 ---
 
