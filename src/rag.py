@@ -12,6 +12,7 @@ Grounding + citation is the whole point of RAG. We always return where the answe
 came from, so the user (and you, when debugging) can verify it.
 """
 from src.embed_store import search
+from src.rerank import select_dataset
 from src.router import route
 from src.table_query import answer_from_table
 from src.llm import generate
@@ -35,7 +36,9 @@ def answer(question):
     if not hits:
         return {"answer": "I couldn't find a relevant dataset for that.", "source": None}
 
-    top_hit = hits[0]
+    # Let the LLM pick the best of the top-k candidates (fixes bi-encoder mis-ranks
+    # between near-identical datasets); falls back to the vector top-1 on any issue.
+    top_hit = select_dataset(question, hits)
     path = route(question, top_hit)  # "numeric" or "descriptive"
 
     if path == "numeric":

@@ -42,7 +42,10 @@ document means a question in *either* language matches the same dataset.
 question (EN or AR)
       │
       ▼
-  embed_store.search()      ← multilingual embeddings + Chroma  (find the dataset)
+  embed_store.search()      ← multilingual embeddings + Chroma  (top-k candidates)
+      │
+      ▼
+  rerank.select_dataset()   ← LLM picks the best of the top-k   (fixes near-twins)
       │
       ▼
   router.route()            ← numeric vs descriptive?           (the key decision)
@@ -106,6 +109,7 @@ python -m src.rag "كم عدد سكان منطقة مكة المكرمة؟"
 | `data/catalog.json` | **You curate this.** The index of datasets you support. |
 | `src/ingest.py` | Turns catalog entries into searchable text (both languages). |
 | `src/embed_store.py` | Multilingual embeddings + Chroma vector store. |
+| `src/rerank.py` | LLM picks the best dataset from the top-k retrieved candidates. |
 | `src/router.py` | **The core idea** — numeric vs descriptive routing. |
 | `src/table_query.py` | Answers numeric questions from the real CSV. |
 | `src/rag.py` | Orchestrates the whole flow into `answer()`. |
@@ -141,16 +145,23 @@ is as important as which model you embed with.*
 Scaling from 4 to 6 datasets sharpened the point: with several "X by administrative
 region" tables (population, nationality, households, density), short Arabic queries
 became hard for the bi-encoder to separate — tuning a description to fix one case
-(density) regressed another (plain population), a clear whack-a-mole signal. Routing
-holds at ~13/14; the honest fix is not more description-tuning but a **cross-encoder
-reranker** (or LLM-based dataset selection) on the top-k retrieved candidates. That's
-the next item on the roadmap, and the eval is what makes the trade-off visible.
+(density) regressed another (plain population), a clear whack-a-mole signal that
+stalled routing at 13/14. The real fix wasn't more description-tuning but an
+**LLM dataset selector** (`src/rerank.py`): retrieval still surfaces the top-k
+candidates, then the local model picks the best one for the specific question
+(nationality vs region vs age vs density). Retrieval alone put `population-density`
+above `population-by-region` for "how many people in Makkah"; the reranker corrects
+it, and always falls back to the vector top-1 so it can't do worse. That took routing
+to **14/14 (100%)** and, crucially, fixed both ambiguities at once instead of trading
+one for another. Lesson: *when a bi-encoder can't separate near-twins, don't overfit
+the embeddings — add a cheap LLM rerank step over the top-k.*
 
 ---
 
 ## Roadmap / future work
 
-- Replace the keyword router with an LLM intent classifier and compare on the eval set.
+- ✅ LLM dataset selector over the top-k (`src/rerank.py`) — took routing to 14/14.
+- Replace the keyword *path* router (numeric vs descriptive) with an LLM classifier too.
 - Text-to-pandas for large tables (with a sandboxed execution namespace).
 - Support more themes beyond education (health, economy).
 - Add a hosted-API backend option alongside Ollama.

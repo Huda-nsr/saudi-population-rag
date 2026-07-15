@@ -22,6 +22,7 @@ import pathlib
 from collections import defaultdict
 
 from src.embed_store import search
+from src.rerank import select_dataset
 from src.router import route
 from src.rag import answer
 
@@ -49,7 +50,7 @@ def run(routing_only: bool) -> None:
         exp_path = c.get("expected_type")  # "numeric" | "descriptive"
 
         hits = search(q)
-        top = hits[0] if hits else None
+        top = select_dataset(q, hits) if hits else None  # LLM reranks the top-k
         chosen_id = top["metadata"].get("id") if top else None
         got_path = route(q, top) if top else None
 
