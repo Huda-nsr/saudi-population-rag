@@ -5,12 +5,12 @@ census data (from the [National Open Data Platform](https://open.data.gov.sa) /
 [Saudi Census 2022](https://portal.saudicensus.sa)), and get answers grounded in the
 real data — with a citation to the source dataset every time.
 
-![Saudi Population & Census — bilingual RAG Q&A](docs/demo.gif)
+![The app answering an Arabic question and citing its source dataset](docs/demo.png)
 
-> The banner above is a placeholder. Replace **`docs/demo.gif`** with a ~15s screen
-> recording of the running app answering an English and an Arabic question (each with
-> its cited source) — capture it with [ScreenToGif](https://www.screentogif.com/),
-> keep the same filename, and it appears here automatically.
+> The app answering an Arabic question — routing to the correct dataset
+> (*Population by administrative region*), returning the figure, and citing its
+> source. Works identically in English. _(Optional: swap in a short animated GIF for
+> extra impact — same `docs/` folder.)_
 >
 > **Live app:** _add your Hugging Face Spaces link here once deployed._
 
