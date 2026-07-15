@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Local settings
+.env
+
+# Parked dead code from the scaffold reconciliation — not for publication
+attic/
+
+# Generated vector store (rebuild with scripts/build_index.py)
+data/chroma/
+
+# Downloaded raw datasets — keep the repo light. Commit catalog.json instead,
+# and document where to download the CSVs. (If your datasets are small and the
+# license allows redistribution, you MAY choose to commit a few.)
+data/raw/*
+!data/raw/.gitkeep

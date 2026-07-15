@@ -1,0 +1,90 @@
+{
+  "_readme": "Curated index of the datasets this app supports. ingest.py EMBEDS this (titles/descriptions/columns, both languages) for semantic routing; table_query.py reads the CSV named in 'file' from data/raw/ for the numeric path. HONESTY NOTE: entries with \"sample_data\": true use synthetic figures from make_sample_data.py (the open-data portal is WAF-protected — see CURATION.md to swap in real CSVs). 'source_url' points at the real authoritative source (Saudi Census 2022 / GASTAT). SUBJECT: Population & Census.",
+
+  "datasets": [
+    {
+      "id": "pop-by-region",
+      "title_en": "Population by administrative region",
+      "title_ar": "عدد السكان حسب المنطقة الإدارية",
+      "description_en": "Total population counts broken down by administrative region, gender, and year. Covers regions such as Riyadh, Makkah, the Eastern Province, Asir, Madinah, Qassim, and Tabuk.",
+      "description_ar": "إجمالي عدد السكان موزعًا حسب المنطقة الإدارية والجنس والسنة. يشمل مناطق مثل الرياض ومكة المكرمة والمنطقة الشرقية وعسير والمدينة المنورة والقصيم وتبوك.",
+      "source_org": "General Authority for Statistics (GASTAT)",
+      "source_url": "https://portal.saudicensus.sa/",
+      "file": "pop-by-region.csv",
+      "columns": ["region", "gender", "year", "population"],
+      "content_type": "numeric",
+      "language": "bilingual",
+      "sample_data": true
+    },
+    {
+      "id": "pop-by-age-group",
+      "title_en": "Population by age group",
+      "title_ar": "عدد السكان حسب الفئة العمرية",
+      "description_en": "Population distribution across age groups (0-14, 15-24, 25-39, 40-64, 65+) by gender and year. Useful for questions about the youth share, working-age population, and the elderly.",
+      "description_ar": "توزيع السكان على الفئات العمرية (0-14، 15-24، 25-39، 40-64، 65+) حسب الجنس والسنة. مفيد لأسئلة نسبة الشباب والسكان في سن العمل وكبار السن.",
+      "source_org": "General Authority for Statistics (GASTAT)",
+      "source_url": "https://portal.saudicensus.sa/",
+      "file": "pop-by-age-group.csv",
+      "columns": ["age_group", "gender", "year", "population"],
+      "content_type": "numeric",
+      "language": "bilingual",
+      "sample_data": true
+    },
+    {
+      "id": "pop-by-nationality",
+      "title_en": "Population by nationality (Saudi and non-Saudi)",
+      "title_ar": "عدد السكان حسب الجنسية (سعودي وغير سعودي)",
+      "description_en": "Population counts split into Saudi and non-Saudi nationality, by administrative region and year. Covers Riyadh, Makkah, the Eastern Province, Asir, Madinah, Qassim, and Tabuk.",
+      "description_ar": "أعداد السكان مقسمة إلى سعوديين وغير سعوديين، حسب المنطقة الإدارية والسنة. يشمل الرياض ومكة المكرمة والمنطقة الشرقية وعسير والمدينة المنورة والقصيم وتبوك.",
+      "source_org": "General Authority for Statistics (GASTAT)",
+      "source_url": "https://portal.saudicensus.sa/",
+      "file": "pop-by-nationality.csv",
+      "columns": ["region", "nationality", "year", "population"],
+      "content_type": "numeric",
+      "language": "bilingual",
+      "sample_data": true
+    },
+    {
+      "id": "households-by-region",
+      "title_en": "Households and average household size by region",
+      "title_ar": "الأسر ومتوسط حجم الأسرة حسب المنطقة",
+      "description_en": "Number of households (dwellings/housing units occupied by a family) and the average household size, by administrative region and year. Covers Riyadh, Makkah, the Eastern Province, Asir, Madinah, Qassim, and Tabuk. Use this for questions about families, households, and housing — not total population counts.",
+      "description_ar": "عدد الأسر (المساكن التي تشغلها أسرة) ومتوسط حجم الأسرة، حسب المنطقة الإدارية والسنة. يشمل الرياض ومكة المكرمة والمنطقة الشرقية وعسير والمدينة المنورة والقصيم وتبوك. يُستخدم لأسئلة الأسر والمساكن والإسكان وليس إجمالي عدد السكان.",
+      "source_org": "General Authority for Statistics (GASTAT)",
+      "source_url": "https://portal.saudicensus.sa/",
+      "file": "households-by-region.csv",
+      "columns": ["region", "year", "households", "avg_household_size"],
+      "content_type": "numeric",
+      "language": "bilingual",
+      "sample_data": true
+    },
+    {
+      "id": "population-density",
+      "title_en": "Population density by region",
+      "title_ar": "الكثافة السكانية حسب المنطقة",
+      "description_en": "How crowded each region is: population density in persons per square kilometre, alongside the region's land area (km2), by administrative region and year. Covers Riyadh, Makkah, the Eastern Province, Asir, Madinah, Qassim, and Tabuk. Use this for density and crowdedness questions, not plain population totals.",
+      "description_ar": "مدى ازدحام كل منطقة: الكثافة السكانية بعدد الأشخاص لكل كيلومتر مربع، إلى جانب مساحة المنطقة (كم2)، حسب المنطقة الإدارية والسنة. يشمل الرياض ومكة المكرمة والمنطقة الشرقية وعسير والمدينة المنورة والقصيم وتبوك. تُستخدم لأسئلة الكثافة والازدحام وليست أعداد السكان الإجمالية.",
+      "source_org": "General Authority for Statistics (GASTAT)",
+      "source_url": "https://portal.saudicensus.sa/",
+      "file": "population-density.csv",
+      "columns": ["region", "year", "area_km2", "population", "density_per_km2"],
+      "content_type": "numeric",
+      "language": "bilingual",
+      "sample_data": true
+    },
+    {
+      "id": "census-overview",
+      "title_en": "Saudi Census 2022 — overview",
+      "title_ar": "تعداد السعودية 2022 — نظرة عامة",
+      "description_en": "Narrative overview of the Saudi Census 2022 conducted by the General Authority for Statistics (GASTAT): what it measured (population size, age structure, nationality, households and housing across the thirteen administrative regions), how often it is run, and how the data is published in Arabic and English. This entry is answered from text (the descriptive path), not a table.",
+      "description_ar": "نظرة عامة على تعداد السعودية 2022 الذي نفّذته الهيئة العامة للإحصاء: ما الذي قاسه (حجم السكان والتركيب العمري والجنسية والأسر والمساكن عبر المناطق الإدارية الثلاث عشرة)، وكم مرة يُجرى، وكيف تُنشر البيانات بالعربية والإنجليزية. تتم الإجابة على هذا المدخل من النص (المسار الوصفي) وليس من جدول.",
+      "source_org": "General Authority for Statistics (GASTAT)",
+      "source_url": "https://www.stats.gov.sa/",
+      "file": "",
+      "columns": [],
+      "content_type": "descriptive",
+      "language": "bilingual",
+      "sample_data": false
+    }
+  ]
+}

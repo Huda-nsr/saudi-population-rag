@@ -1,0 +1,11 @@
+# --- Core RAG stack ---
+sentence-transformers>=3.0.0   # local multilingual embeddings (Arabic + English)
+chromadb>=0.5.0                # local vector store for semantic search over the catalog
+pandas>=2.2.0                  # loading and querying the tabular datasets
+requests>=2.31.0              # talking to the local Ollama server + downloading data
+
+# --- Interface ---
+gradio>=4.44.0                # the clickable demo UI (deploys free to HF Spaces)
+
+# --- Nice to have ---
+python-dotenv>=1.0.0          # read settings from a .env file

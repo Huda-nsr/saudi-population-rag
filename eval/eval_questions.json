@@ -1,0 +1,108 @@
+{
+  "_readme": "Hand-written evaluation cases (subject: Population & Census). Mixed English/Arabic and numeric/descriptive so both answering paths and both languages are exercised. 'expected_dataset' scores ROUTING independently of ANSWER text. 'expected_answer_contains' is a loose substring check; leave '' for numeric cases whose exact figure depends on the (currently synthetic) data. A few cases deliberately stress the region-vs-nationality ambiguity. Extend toward ~20 cases as you add datasets.",
+
+  "questions": [
+    {
+      "question": "What was the population of the Riyadh region in 2022?",
+      "language": "en",
+      "expected_type": "numeric",
+      "expected_dataset": "pop-by-region",
+      "expected_answer_contains": ""
+    },
+    {
+      "question": "كم عدد سكان منطقة مكة المكرمة؟",
+      "language": "ar",
+      "expected_type": "numeric",
+      "expected_dataset": "pop-by-region",
+      "expected_answer_contains": ""
+    },
+    {
+      "question": "How many people are in the 25-39 age group?",
+      "language": "en",
+      "expected_type": "numeric",
+      "expected_dataset": "pop-by-age-group",
+      "expected_answer_contains": ""
+    },
+    {
+      "question": "كم عدد السكان في الفئة العمرية 65 سنة فأكثر؟",
+      "language": "ar",
+      "expected_type": "numeric",
+      "expected_dataset": "pop-by-age-group",
+      "expected_answer_contains": ""
+    },
+    {
+      "question": "How many non-Saudis live in the Eastern Province?",
+      "language": "en",
+      "expected_type": "numeric",
+      "expected_dataset": "pop-by-nationality",
+      "expected_answer_contains": ""
+    },
+    {
+      "question": "كم عدد السعوديين في منطقة الرياض؟",
+      "language": "ar",
+      "expected_type": "numeric",
+      "expected_dataset": "pop-by-nationality",
+      "expected_answer_contains": ""
+    },
+    {
+      "question": "What did the Saudi Census 2022 measure?",
+      "language": "en",
+      "expected_type": "descriptive",
+      "expected_dataset": "census-overview",
+      "expected_answer_contains": ""
+    },
+    {
+      "question": "ماذا يغطي تعداد السعودية 2022؟",
+      "language": "ar",
+      "expected_type": "descriptive",
+      "expected_dataset": "census-overview",
+      "expected_answer_contains": ""
+    },
+    {
+      "question": "How many men live in Tabuk?",
+      "language": "en",
+      "expected_type": "numeric",
+      "expected_dataset": "pop-by-region",
+      "expected_answer_contains": "",
+      "_note": "stress: 'men' should map to the region gender breakdown, not nationality"
+    },
+    {
+      "question": "كم عدد غير السعوديين في المنطقة الشرقية؟",
+      "language": "ar",
+      "expected_type": "numeric",
+      "expected_dataset": "pop-by-nationality",
+      "expected_answer_contains": "",
+      "_note": "stress: Arabic non-Saudi nationality question vs region dataset"
+    },
+    {
+      "question": "How many households are there in the Eastern Province?",
+      "language": "en",
+      "expected_type": "numeric",
+      "expected_dataset": "households-by-region",
+      "expected_answer_contains": ""
+    },
+    {
+      "question": "كم عدد الأسر في منطقة مكة المكرمة؟",
+      "language": "ar",
+      "expected_type": "numeric",
+      "expected_dataset": "households-by-region",
+      "expected_answer_contains": "",
+      "_note": "stress: households vs total-population dataset"
+    },
+    {
+      "question": "What is the population density of the Riyadh region?",
+      "language": "en",
+      "expected_type": "numeric",
+      "expected_dataset": "population-density",
+      "expected_answer_contains": ""
+    },
+    {
+      "question": "ما هي الكثافة السكانية في منطقة تبوك؟",
+      "language": "ar",
+      "expected_type": "numeric",
+      "expected_dataset": "population-density",
+      "expected_answer_contains": "",
+      "_note": "stress: density vs region population dataset"
+    }
+  ]
+}
